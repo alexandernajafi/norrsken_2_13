@@ -3,7 +3,7 @@ import GoogleMap from 'google-map-react'
 
 class HeatMap extends Component {
   render() {
-    const { center, zoom } = this.props
+    const { center, zoom, data } = this.props
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMap
@@ -12,6 +12,8 @@ class HeatMap extends Component {
           }}
           defaultCenter={center}
           defaultZoom={zoom}
+          heatmapLibrary={true}
+          heatmap={{ positions: data, options: { radius: 20, opacity: 0.6 } }}
         ></GoogleMap>
       </div>
     )
