@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({@JsonSubTypes.Type(name = "threashold", value = ThreasholdAlarm.class)})
+@JsonSubTypes({@JsonSubTypes.Type(name = "threshold", value = ThreasholdAlarm.class)})
 public abstract class Trigger {
   public abstract List<Alarm> trigger(Optional<EricssonWeatherData> weatherData);
 }

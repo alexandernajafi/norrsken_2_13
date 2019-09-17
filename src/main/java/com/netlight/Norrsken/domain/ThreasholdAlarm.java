@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Data
 @AllArgsConstructor
 public class ThreasholdAlarm extends Trigger {
-  final double threashold;
+  final double threshold;
   final Area area;
 
   public List<Alarm> trigger(Optional<EricssonWeatherData> weatherData) {
@@ -27,8 +27,8 @@ public class ThreasholdAlarm extends Trigger {
                                 new Point(
                                     p.getGeometry().getCoordinates()[1],
                                     p.getGeometry().getCoordinates()[0])))
-                    .filter(p -> p.getProperties().getValue() > threashold)
-                    .map(p -> new Alarm("Over threashold at: " + p.toString(), p))
+                    .filter(p -> p.getProperties().getValue() > threshold)
+                    .map(p -> new Alarm("Over threshold at: " + p.toString(), p))
                     .collect(Collectors.toList()))
         .orElse(Collections.emptyList());
   }
