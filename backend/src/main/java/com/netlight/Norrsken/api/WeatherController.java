@@ -26,7 +26,7 @@ public class WeatherController {
       produces = {"application/json"})
   public Weather getWeatherData(@RequestParam("time") String timeString) {
     OffsetDateTime time = OffsetDateTime.parse(timeString);
-    EricssonWeatherData stockholm = ericssonWeatherClient.getWeatherData("stockholm", time, TOKEN);
+    EricssonWeatherData stockholm = ericssonWeatherClient.getWeatherData(time, TOKEN);
     return new Weather(
         stockholm.getPoints().stream()
             .map(
