@@ -26,13 +26,14 @@ public class AlarmService {
   }
 
   private AlarmDefinition threasholdAlarm() {
-    Point upperRight = new Point(55, 17);
-    Point upperLeft = new Point(55, 17);
-    Point downRight = new Point(55, 17);
-    Point downLeft = new Point(55, 17);
+    // 17.906385542168675,59.294137931034484
+    //    Point upperLeft = new Point(59.294137931034494, 17.906385542168655);
+    //    Point downRight = new Point(59.294137931034474, 17.906385542168685);
+
+    Point upperLeft = new Point(59.1551724137931, 18.435542168674697);
+    Point downRight = new Point(59.1551724137931, 18.435542168674697);
     return new AlarmDefinition(
-        "https://aCallbackUrl.com",
-        new ThreasholdAlarm(2.1, new Area(upperRight, upperLeft, downRight, downLeft)));
+        "https://aCallbackUrl.com", new ThreasholdAlarm(0.0, new Area(upperLeft, downRight)));
   }
 
   public List<Alarm> getActiveAlarms(OffsetDateTime offsetDateTime, String token) {

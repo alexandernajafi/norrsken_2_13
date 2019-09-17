@@ -25,8 +25,8 @@ public class ThreasholdAlarm extends Trigger {
                         p ->
                             area.surrounds(
                                 new Point(
-                                    p.getGeometry().getCoordinates()[0],
-                                    p.getGeometry().getCoordinates()[1])))
+                                    p.getGeometry().getCoordinates()[1],
+                                    p.getGeometry().getCoordinates()[0])))
                     .filter(p -> p.getProperties().getValue() > threashold)
                     .map(p -> new Alarm("Over threashold at: " + p.toString(), p))
                     .collect(Collectors.toList()))
