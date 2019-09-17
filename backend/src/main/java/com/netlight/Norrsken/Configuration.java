@@ -10,6 +10,9 @@ import com.netlight.Norrsken.clients.EricssonWeatherClient;
 import com.netlight.Norrsken.clients.domain.EricssonWeatherData;
 import org.springframework.context.annotation.Bean;
 
+import java.time.Duration;
+import java.util.Optional;
+
 @org.springframework.context.annotation.Configuration
 public class Configuration {
   private static final String url =
@@ -27,12 +30,15 @@ public class Configuration {
 
   @Bean
   public EricssonWeatherClient ericssonWeatherClient(
-      ObjectMapper objectMapper, Cache<String, EricssonWeatherData> cache) {
+      ObjectMapper objectMapper, Cache<String, Optional<EricssonWeatherData>> cache) {
     return new EricssonWeatherClient(url, path, objectMapper, cache);
   }
 
   @Bean
-  public Cache<String, EricssonWeatherData> weatherDataCache() {
-    return CacheBuilder.newBuilder().maximumSize(500).build();
+  public Cache<String, Optional<EricssonWeatherData>> weatherDataCache() {
+    return CacheBuilder.newBuilder()
+        .maximumSize(500)
+        .expireAfterWrite(Duration.ofMinutes(10))
+        .build();
   }
 }

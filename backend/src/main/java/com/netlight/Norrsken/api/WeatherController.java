@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,15 +28,19 @@ public class WeatherController {
       produces = {"application/json"})
   public Weather getWeatherData(@RequestParam("time") String timeString) {
     OffsetDateTime time = OffsetDateTime.parse(timeString);
-    EricssonWeatherData stockholm = ericssonWeatherClient.getWeatherData(time, TOKEN);
+    Optional<EricssonWeatherData> stockholm = ericssonWeatherClient.getWeatherData(time, TOKEN);
     return new Weather(
-        stockholm.getPoints().stream()
+        stockholm
             .map(
-                p ->
-                    new Point(
-                        p.getGeometry().getCoordinates()[0],
-                        p.getGeometry().getCoordinates()[1],
-                        p.getProperties().getValue()))
-            .collect(Collectors.toList()));
+                s ->
+                    s.getPoints().stream()
+                        .map(
+                            p ->
+                                new Point(
+                                    p.getGeometry().getCoordinates()[0],
+                                    p.getGeometry().getCoordinates()[1],
+                                    p.getProperties().getValue()))
+                        .collect(Collectors.toList()))
+            .orElse(Collections.emptyList()));
   }
 }

@@ -8,6 +8,7 @@ import com.netlight.Norrsken.clients.domain.EricssonWeatherData;
 import org.junit.Test;
 
 import java.time.OffsetDateTime;
+import java.util.Optional;
 
 public class ClientTest {
   String token =
@@ -25,9 +26,9 @@ public class ClientTest {
             objectMapper,
             CacheBuilder.newBuilder().build());
 
-    EricssonWeatherData stockholm =
+    Optional<EricssonWeatherData> stockholm =
         ericssonWeatherClient.getWeatherData(
             OffsetDateTime.parse("2019-09-16T20:00:00+02:00"), token);
-    System.out.println(stockholm);
+    System.out.println(stockholm.get());
   }
 }
