@@ -29,3 +29,5 @@ Run `cd client`
 Run `yarn`
 
 Run `yarn start`
+
+And a web browser will open! 
