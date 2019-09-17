@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import GoogleMap from 'google-map-react'
+import { fetchWeatherData } from '../actions/weather'
+import {
+  getWeatherDataForSelectedTime,
+  getSelectedTime,
+} from '../reducers/selectors'
 
 class HeatMap extends Component {
+  componentDidMount() {
+    this.props.fetchWeatherData(this.props.selectedTime)
+  }
+
   render() {
     const { center, zoom, data } = this.props
     return (
@@ -28,4 +38,16 @@ HeatMap.defaultProps = {
   zoom: 11,
 }
 
-export default HeatMap
+const mapStateToProps = state => ({
+  data: getWeatherDataForSelectedTime(state),
+  selectedTime: getSelectedTime(state),
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchWeatherData: time => dispatch(fetchWeatherData(time)),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeatMap)
