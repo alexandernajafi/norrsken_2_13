@@ -7,7 +7,7 @@ import {
 const initialState = {
   isLoading: false,
   data: {},
-  selectedTime: new Date('2019-09-15T16:00'),
+  selectedTime: new Date('2019-09-16T16:30:10+02:00'),
 }
 
 const weatherReducer = (state = initialState, { type, payload }) => {

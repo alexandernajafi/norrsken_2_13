@@ -21,7 +21,7 @@ export const fetchWeatherDataError = error => ({
 export const fetchWeatherData = time => dispatch => {
   dispatch(fetchWeatherDataLoading())
 
-  return dispatch(
+  /*return dispatch(
     fetchWeatherDataSuccess(time, [
       {
         longitude: 17.906385542168675,
@@ -189,11 +189,11 @@ export const fetchWeatherData = time => dispatch => {
         intensity: 0.699999988079071,
       },
     ])
-  )
+  )*/
 
   fetch(
-    `https://localhost/api/weather?time=${encodeURIComponent(
-      time.toISOString()
+    `https://afternoon-dawn-61570.herokuapp.com/api/weather?time=${encodeURIComponent(
+      time
     )}`
   )
     .then(response => {
