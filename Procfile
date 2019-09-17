@@ -1,1 +1,1 @@
-web: java -jar backend/target/java-getting-started-1.0.jar
+web: java -jar backend/target/Norrsken-0.0.1-SNAPSHOT.jar
