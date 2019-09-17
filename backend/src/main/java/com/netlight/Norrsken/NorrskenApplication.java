@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class NorrskenApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(NorrskenApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(NorrskenApplication.class, args);
+  }
 }
