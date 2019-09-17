@@ -25,5 +25,7 @@ to define alerts and actions that should be taken upon alert triggers.
 
 ### Instructions to start application
 Run `cd client`
+
 Run `yarn`
+
 Run `yarn start`
