@@ -4,10 +4,7 @@ import com.netlight.Norrsken.AlarmService;
 import com.netlight.Norrsken.Configuration;
 import com.netlight.Norrsken.domain.AlarmDefinition;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -18,6 +15,7 @@ import java.util.List;
 public class AlarmController {
   final AlarmService alarmService;
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(
       value = "/defs",
       method = RequestMethod.GET,
@@ -26,6 +24,7 @@ public class AlarmController {
     return alarmService.getDefinitions();
   }
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(
       value = "/active",
       method = RequestMethod.GET,

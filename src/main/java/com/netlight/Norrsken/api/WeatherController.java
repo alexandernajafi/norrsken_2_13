@@ -4,10 +4,7 @@ import com.netlight.Norrsken.Configuration;
 import com.netlight.Norrsken.clients.EricssonWeatherClient;
 import com.netlight.Norrsken.clients.domain.EricssonWeatherData;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -20,6 +17,7 @@ import java.util.stream.Collectors;
 public class WeatherController {
   EricssonWeatherClient ericssonWeatherClient;
 
+  @CrossOrigin(origins = "*")
   @RequestMapping(
       value = "/weather",
       method = RequestMethod.GET,
