@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GoogleMap from 'google-map-react'
-import { fetchWeatherData } from '../actions/weather'
+import { fetchWeatherData, fetchActions } from '../actions/weather'
+import MapMarker from './MapMarker'
 import {
   getWeatherDataForSelectedTime,
   getSelectedTime,
+  getActions,
 } from '../reducers/selectors'
 
 class HeatMap extends Component {
   componentDidMount() {
     this.props.fetchWeatherData(this.props.selectedTime)
+    this.props.fetchActions(this.props.selectedTime)
   }
 
   render() {
-    const { center, zoom, data } = this.props
+    const { center, zoom, data, actions } = this.props
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMap
@@ -24,7 +27,14 @@ class HeatMap extends Component {
           defaultZoom={zoom}
           heatmapLibrary={true}
           heatmap={{ positions: data, options: { radius: 20, opacity: 0.6 } }}
-        ></GoogleMap>
+        >
+          {actions.map(action => (
+            <MapMarker
+              lat={action.point.geometry.coordinates[1]}
+              lng={action.point.geometry.coordinates[0]}
+            />
+          ))}
+        </GoogleMap>
       </div>
     )
   }
@@ -35,16 +45,18 @@ HeatMap.defaultProps = {
     lat: 59.33258,
     lng: 18.0649,
   },
-  zoom: 11,
+  zoom: 10,
 }
 
 const mapStateToProps = state => ({
   data: getWeatherDataForSelectedTime(state),
   selectedTime: getSelectedTime(state),
+  actions: getActions(state),
 })
 
 const mapDispatchToProps = dispatch => ({
   fetchWeatherData: time => dispatch(fetchWeatherData(time)),
+  fetchActions: time => dispatch(fetchActions(time)),
 })
 
 export default connect(

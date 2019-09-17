@@ -5,6 +5,9 @@ import {
   FETCH_TRIGGERS_LOADING,
   FETCH_TRIGGERS_SUCCESS,
   FETCH_TRIGGERS_ERROR,
+  FETCH_ACTIONS_LOADING,
+  FETCH_ACTIONS_SUCCESS,
+  FETCH_ACTIONS_ERROR,
 } from '../actions/types'
 
 export const fetchWeatherDataLoading = () => ({
@@ -67,4 +70,37 @@ export const fetchTriggers = () => dispatch => {
     .then(response => response.json())
     .then(data => dispatch(fetchTriggersSuccess(data)))
     .catch(error => dispatch(fetchTriggersError(error)))
+}
+
+export const fetchActionsLoading = () => ({
+  type: FETCH_ACTIONS_LOADING,
+})
+
+export const fetchActionsSuccess = data => ({
+  type: FETCH_ACTIONS_SUCCESS,
+  payload: data,
+})
+
+export const fetchActionsError = error => ({
+  type: FETCH_ACTIONS_ERROR,
+  payload: error,
+})
+
+export const fetchActions = time => dispatch => {
+  dispatch(fetchActionsLoading())
+
+  fetch(
+    `https://afternoon-dawn-61570.herokuapp.com/alarm/active?time=${encodeURIComponent(
+      time
+    )}`
+  )
+    .then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText)
+      }
+      return response
+    })
+    .then(response => response.json())
+    .then(data => dispatch(fetchActionsSuccess(data)))
+    .catch(error => dispatch(fetchActionsError(error)))
 }

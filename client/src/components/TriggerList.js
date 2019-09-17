@@ -12,13 +12,14 @@ class TriggerList extends Component {
   render() {
     const { triggers } = this.props
     return (
-      <div class="trigger-list">
+      <div className="trigger-list">
         <h1>Triggers</h1>
         {triggers &&
           triggers.map(triggerData => (
-            <div class="trigger">
+            <div className="trigger">
               <p>Trigger type: {triggerData.trigger.type}</p>
               <p>Threshold: {triggerData.trigger.threshold}</p>
+              <p>Callback URL: {triggerData.callbackUrl}</p>
             </div>
           ))}
       </div>

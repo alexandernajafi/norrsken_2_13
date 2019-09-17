@@ -6,7 +6,7 @@
 
 **Challenge**: EricssonWeather
 
-**Presentation slides**: See pdf in root or repo, or https://docs.google.com/presentation/d/17DWkZLBM18jLJnVKA_dJ6Wxnsqi5SrB9fCb-eQIF4HY/edit?usp=sharing. 
+**Presentation slides**: See pdf in root of repo, or https://docs.google.com/presentation/d/17DWkZLBM18jLJnVKA_dJ6Wxnsqi5SrB9fCb-eQIF4HY/edit?usp=sharing. 
 
 **Applied license**: MIT License
 
