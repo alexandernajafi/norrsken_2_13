@@ -22,3 +22,8 @@ The weather trigger service is an extensible platform that allows aggregation an
 data from multiple sources such as weather stations, forecasts, IoT sensors, connected cars,
 Telecom infrastructure, etc. It provides a flexible UI that allow users
 to define alerts and actions that should be taken upon alert triggers.
+
+### Instructions to start application
+Run `cd client`
+Run `yarn`
+Run `yarn start`
